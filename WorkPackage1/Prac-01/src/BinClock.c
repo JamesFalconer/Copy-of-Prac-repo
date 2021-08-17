@@ -95,6 +95,7 @@ int main(void){
 	for (;;){
 		//Fetch the time from the RTC
 		//Write your logic here
+		getCurrentTime(void);
 		
 		//Toggle Seconds LED
 		//Write your logic here
