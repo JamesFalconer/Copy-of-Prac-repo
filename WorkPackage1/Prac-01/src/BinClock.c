@@ -211,7 +211,7 @@ void hourInc(void){
 		}
 		else {
 			HH+=1;
-			printf("hours after inc %d\n"HH);
+			printf("hours after inc %d\n",HH);
 		}
 		//Write hours back to the RTC
 		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
@@ -246,7 +246,7 @@ void minInc(void){
 		else {
 			MM +=1;
 			
-			printf("min after inc %d\n" MM);
+			printf("min after inc %d\n", MM);
 			
 			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
 		}
