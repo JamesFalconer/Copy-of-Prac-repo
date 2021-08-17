@@ -96,10 +96,12 @@ int main(void){
 		//Fetch the time from the RTC
 		//Write your logic here
 		getCurrentTime(void);
-		SS = decCompensation
 		
 		//Toggle Seconds LED
 		//Write your logic here
+		digitalWrite(LED, HIGH);
+		delay(10);
+		digitalWrite(LED, LOW);
 		
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
