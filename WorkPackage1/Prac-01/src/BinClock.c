@@ -235,12 +235,9 @@ void minInc(void){
 		if (MM == 59)
 			MM ==00;
 			
-			HH =getHours();
-			HH =decCompensation(HH);
-			HH+=1;
+			hourInc(void);
 		
 			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
-			wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
 		}
 		else {
 			MM +=1;
