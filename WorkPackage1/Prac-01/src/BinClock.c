@@ -96,12 +96,10 @@ int main(void){
 		//Fetch the time from the RTC
 		//Write your logic here
 		getCurrentTime(void);
+		SS = decCompensation
 		
 		//Toggle Seconds LED
 		//Write your logic here
-		digitalWrite(LED, HIGH);
-		delay(10);
-		digitalWrite(LED, LOW);
 		
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
@@ -194,8 +192,19 @@ void hourInc(void){
 	if (interruptTime - lastInterruptTime>200){
 		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
+		HH = getHours();
+		HH = decCompensation(HH)
 		//Increase hours by 1, ensuring not to overflow
+		if (HH == 23) {
+			HH=00;
+		}
+		else {
+			HH+=1;
+		}
 		//Write hours back to the RTC
+		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
+
+	
 	}
 	lastInterruptTime = interruptTime;
 }
@@ -212,8 +221,27 @@ void minInc(void){
 	if (interruptTime - lastInterruptTime>200){
 		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
+		MM =getMins();
+		MM =decCompensation(MM);
 		//Increase minutes by 1, ensuring not to overflow
+		if (MM == 59)
+			MM ==00;
+			
+			HH =getHours();
+			HH =decCompensation(HH);
+			HH+=1;
+		
+			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
+			wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
+		}
+		else {
+			MM +=1;
+			
+			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
+		}
 		//Write minutes back to the RTC
+		
+		
 	}
 	lastInterruptTime = interruptTime;
 }
