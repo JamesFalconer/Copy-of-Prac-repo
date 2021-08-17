@@ -96,7 +96,7 @@ int main(void){
 		//Fetch the time from the RTC
 		//Write your logic here
 		hours = getHours();
-		minss = getMins();
+		mins = getMins();
 		secs = getSecs();
 		
 		//Toggle Seconds LED
