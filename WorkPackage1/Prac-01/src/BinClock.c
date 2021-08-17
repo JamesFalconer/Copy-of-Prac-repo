@@ -95,9 +95,9 @@ int main(void){
 	for (;;){
 		//Fetch the time from the RTC
 		//Write your logic here
-		hours = getHours();
-		mins = getMins();
-		secs = getSecs();
+		hours = wiringPiI2CReadReg8 (RTC, HOUR_REGISTER));
+		mins = wiringPiI2CReadReg8 (RTC, MIN_REGISTER);
+		secs = wiringPiI2CReadReg8 (RTC, SEC_REGISTER);
 		
 		//Toggle Seconds LED
 		//Write your logic here
@@ -202,7 +202,7 @@ void hourInc(void){
 	if (interruptTime - lastInterruptTime>200){
 		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
-		HH = getHours();
+		HH = wiringPiI2CReadReg8 (RTC, HOUR_REGISTER);
 		//Increase hours by 1, ensuring not to overflow
 		if (HH == 23) {
 			HH=00;
@@ -230,7 +230,7 @@ void minInc(void){
 	if (interruptTime - lastInterruptTime>200){
 		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
-		MM =getMins();
+		MM =wiringPiI2CReadReg8 (RTC, MIN_REGISTER);
 		//Increase minutes by 1, ensuring not to overflow
 		if (MM == 59){
 			MM = 00;
