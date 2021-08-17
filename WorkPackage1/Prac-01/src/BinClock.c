@@ -5,8 +5,8 @@
  * Further Modified By: Mark Njoroge 
  *
  * 
- * <STUDNUM_1> <STUDNUM_2>
- * Date
+ * FLCJAM002 SPHDAV001
+ * 17/08/2021
 */
 
 #include <signal.h> //for catching signals
