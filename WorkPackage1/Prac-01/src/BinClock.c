@@ -24,7 +24,7 @@ long lastInterruptTime = 0; //Used for button debounce
 int RTC; //Holds the RTC instance
 
 int HH,MM,SS;
-
+int state;
 
 // Clean up function to avoid damaging used pins
 void CleanUp(int sig){
@@ -99,9 +99,15 @@ int main(void){
 		
 		//Toggle Seconds LED
 		//Write your logic here
-		digitalWrite(LED, HIGH);
-		delay(10);
-		digitalWrite(LED, LOW);
+		
+		if (state == 1){
+			digitalWrite(LED, HIGH);
+			state = 0;
+		}
+		else{
+			digitalWrite(LED, LOW);
+			state = 1;
+		]
 		
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
