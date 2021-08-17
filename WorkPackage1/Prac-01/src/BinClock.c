@@ -31,8 +31,8 @@ void CleanUp(int sig){
 	printf("Cleaning up\n");
 
 	//Set LED to low then input mode
-	//Logic here
-
+	digitalWrite(LED, LOW);
+	pinMode(LED, INPUT);
 
 	for (int j=0; j < sizeof(BTNS)/sizeof(BTNS[0]); j++) {
 		pinMode(BTNS[j],INPUT);
@@ -56,7 +56,8 @@ void initGPIO(void){
 	
 	//Set up the LED
 	//Write your Logic here
-
+	digitalWrite(LED, HIGH);
+	pinMode(LED, OUTPUT);
 	
 	printf("LED and RTC done\n");
 	
