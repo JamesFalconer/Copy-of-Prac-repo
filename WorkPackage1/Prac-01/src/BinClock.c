@@ -233,7 +233,7 @@ void minInc(void){
 		MM =getMins();
 		//Increase minutes by 1, ensuring not to overflow
 		if (MM == 59){
-			MM = 0x00;
+			MM = 00;
 			
 			hourInc();
 		
