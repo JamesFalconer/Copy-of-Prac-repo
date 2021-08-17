@@ -203,7 +203,12 @@ void hourInc(void){
 		printf("Interrupt 1 triggered, %x\n", hours);
 		//Fetch RTC Time
 		HH = getHours();
+		
+		printf("hours from getHours() %d\n",HH);
+		
 		HH = decCompensation(HH);
+		
+		printf("hours after deccompensate() %d\n",HH);
 		//Increase hours by 1, ensuring not to overflow
 		if (HH == 23) {
 			HH=00;
@@ -232,7 +237,10 @@ void minInc(void){
 		printf("Interrupt 2 triggered, %x\n", mins);
 		//Fetch RTC Time
 		MM =getMins();
+		printf("minutes %d\n",MM);
+		
 		MM =decCompensation(MM);
+		printf("minutes after comp %d\n",MM);
 		//Increase minutes by 1, ensuring not to overflow
 		if (MM == 59){
 			MM = 0x00;
