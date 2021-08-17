@@ -18,9 +18,9 @@ void toggleTime(void);
 
 // define constants
 const char RTCAddr = 0x68; //Input RTC Address here 
-const char SEC_REGISTER = 0x00; // see register table in datasheet
-const char MIN_REGISTER = 0x01;
-const char HOUR_REGISTER = 0x02;
+const char SEC_REGISTER = 0x0; // see register table in datasheet
+const char MIN_REGISTER = 0x1;
+const char HOUR_REGISTER = 0x2;
 const char TIMEZONE = 2; // +02H00 (RSA)
 
 // define pins
