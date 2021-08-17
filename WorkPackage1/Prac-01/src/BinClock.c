@@ -211,7 +211,7 @@ void hourInc(void){
 			HH+=1;
 		}
 		//Write hours back to the RTC
-		wiringPiI2CWriteReg8(RTCAddr, HOUR_REGISTER, HH);
+		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
 
 	
 	}
@@ -237,7 +237,7 @@ void minInc(void){
 			
 			hourInc();
 		
-			wiringPiI2CWriteReg8(RTCAddr, MIN_REGISTER, MM);
+			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
 		}
 		else {
 			MM +=1;
