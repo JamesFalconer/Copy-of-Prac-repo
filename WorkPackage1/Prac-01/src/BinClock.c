@@ -242,7 +242,7 @@ void minInc(void){
 		else {
 			MM +=1;
 			
-			wiringPiI2CWriteReg8(RTCAddr, MIN_REGISTER, MM);
+			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
 		}
 		//Write minutes back to the RTC
 		
