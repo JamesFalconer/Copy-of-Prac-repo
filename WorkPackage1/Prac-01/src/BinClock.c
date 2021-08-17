@@ -69,8 +69,8 @@ void initGPIO(void){
 	
 	//Attach interrupts to Buttons
 	//Write your logic here
-	wiringPiISR(BTNS[0], INT_EDGE_FALLING,  &hourInc(void));
-	wiringPiISR(BTNS[1], INT_EDGE_FALLING,  &minInc(void));
+	wiringPiISR(BTNS[0], INT_EDGE_FALLING,  &hourInc);
+	wiringPiISR(BTNS[1], INT_EDGE_FALLING,  &minInc);
 
 	printf("BTNS done\n");
 	printf("Setup done\n");
@@ -95,9 +95,9 @@ int main(void){
 	for (;;){
 		//Fetch the time from the RTC
 		//Write your logic here
-		hours = getHours(void);
-		minss = getMins(void);
-		secs = getSecs(void);
+		hours = getHours();
+		minss = getMins();
+		secs = getSecs();
 		
 		//Toggle Seconds LED
 		//Write your logic here
@@ -237,7 +237,7 @@ void minInc(void){
 		if (MM == 59){
 			MM = 0x00;
 			
-			hourInc(void);
+			hourInc();
 		
 			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
 		}
