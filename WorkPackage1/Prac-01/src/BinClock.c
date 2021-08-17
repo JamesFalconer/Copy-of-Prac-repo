@@ -205,16 +205,13 @@ void hourInc(void){
 		HH = getHours();
 		
 		printf("hours from getHours() %d\n",HH);
-		
-		HH = decCompensation(HH);
-		
-		printf("hours after deccompensate() %d\n",HH);
 		//Increase hours by 1, ensuring not to overflow
 		if (HH == 23) {
 			HH=00;
 		}
 		else {
 			HH+=1;
+			printf("hours after inc %d\n"HH);
 		}
 		//Write hours back to the RTC
 		wiringPiI2CWriteReg8(RTC, HOUR_REGISTER, HH);
@@ -238,9 +235,6 @@ void minInc(void){
 		//Fetch RTC Time
 		MM =getMins();
 		printf("minutes %d\n",MM);
-		
-		MM =decCompensation(MM);
-		printf("minutes after comp %d\n",MM);
 		//Increase minutes by 1, ensuring not to overflow
 		if (MM == 59){
 			MM = 0x00;
@@ -251,6 +245,8 @@ void minInc(void){
 		}
 		else {
 			MM +=1;
+			
+			printf("min after inc %d\n" MM);
 			
 			wiringPiI2CWriteReg8(RTC, MIN_REGISTER, MM);
 		}
