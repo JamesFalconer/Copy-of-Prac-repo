@@ -69,8 +69,8 @@ void initGPIO(void){
 	
 	//Attach interrupts to Buttons
 	//Write your logic here
-	wiringPiISR(BTNS[0], INT_EDGE_FALLING,  void (*hourInc)(void));
-	wiringPiISR(BTNS[1], INT_EDGE_FALLING,  void (*minInc)(void));
+	wiringPiISR(BTNS[0], INT_EDGE_FALLING,  &hourInc(void));
+	wiringPiISR(BTNS[1], INT_EDGE_FALLING,  &minInc(void));
 
 	printf("BTNS done\n");
 	printf("Setup done\n");
@@ -95,7 +95,9 @@ int main(void){
 	for (;;){
 		//Fetch the time from the RTC
 		//Write your logic here
-		getCurrentTime(void);
+		hours = getHours(void);
+		minss = getMins(void);
+		secs = getSecs(void);
 		
 		//Toggle Seconds LED
 		//Write your logic here
@@ -107,7 +109,7 @@ int main(void){
 		else{
 			digitalWrite(LED, LOW);
 			state = 1;
-		]
+		}
 		
 		// Print out the time we have stored on our RTC
 		printf("The current time is: %d:%d:%d\n", hours, mins, secs);
