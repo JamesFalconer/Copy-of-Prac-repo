@@ -46,7 +46,7 @@ def menu():
         print("Starting a new round!")
         print("Use the buttons on the Pi to make and submit your guess!")
         print("Press and hold the guess button to cancel your game")
-        value = generate_number()
+        global value = generate_number()
         while not end_of_game:
             pass
     elif option == "Q":
@@ -66,8 +66,17 @@ def display_scores(count, raw_data):
 # Setup Pins
 def setup():
     # Setup board mode
+    GPIO.setmode(GPIO.BOARD)
     # Setup regular GPIO
+    GPIO.setup(11, GPIO.OUT)
+    GPIO.setup(13, GPIO.OUT)
+    GPIO.setup(15, GPIO.OUT)
+
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     # Setup PWM channels
+    global buzzer = GPIO.PWM(32, 1000)
+    global ledPwm = GPIO.PWM(33, 1000)
     # Setup debouncing and callbacks
     pass
 
@@ -133,6 +142,8 @@ def accuracy_leds():
     # - The % brightness should be directly proportional to the % "closeness"
     # - For example if the answer is 6 and a user guesses 4, the brightness should be at 4/6*100 = 66%
     # - If they guessed 7, the brightness would be at ((8-7)/(8-6)*100 = 50%
+    dutyCycle = 100 - abs(value-current_guess)/7*100
+    ledPwm.ChangeDutyCycle(dutyCycle)
     pass
 
 # Sound Buzzer
