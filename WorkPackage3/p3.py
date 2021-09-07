@@ -64,8 +64,17 @@ def display_scores(count, raw_data):
 # Setup Pins
 def setup():
     # Setup board mode
+    GPIO.setmode(GPIO.BOARD)
     # Setup regular GPIO
+    GPIO.setup(11, GPIO.OUT)
+    GPIO.setup(13, GPIO.OUT)
+    GPIO.setup(15, GPIO.OUT)
+
+    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     # Setup PWM channels
+    buzzer = GPIO.PWM(32, 1000)
+    ledPwm = GPIO.PWM(33, 1000)
     # Setup debouncing and callbacks
     pass
 
