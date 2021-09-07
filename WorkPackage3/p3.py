@@ -68,15 +68,15 @@ def setup():
     # Setup board mode
     GPIO.setmode(GPIO.BOARD)
     # Setup regular GPIO
-    GPIO.setup(11, GPIO.OUT)
-    GPIO.setup(13, GPIO.OUT)
-    GPIO.setup(15, GPIO.OUT)
+    GPIO.setup(LED_value[0], GPIO.OUT)
+    GPIO.setup(LED_value[1], GPIO.OUT)
+    GPIO.setup(LED_value[2], GPIO.OUT)
 
-    GPIO.setup(16, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(btn_submit, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(btn_increase, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     # Setup PWM channels
-    global buzzer = GPIO.PWM(32, 1000)
-    global ledPwm = GPIO.PWM(33, 1000)
+    global buzzerPWM = GPIO.PWM(buzzer, 1)
+    global ledPWM = GPIO.PWM(LED_accuracy, 1000)
     # Setup debouncing and callbacks
     pass
 
@@ -133,6 +133,11 @@ def btn_guess_pressed(channel):
     # - add the new score
     # - sort the scores
     # - Store the scores back to the EEPROM, being sure to update the score count
+    if current_guess - value != 0:
+        trigger_buzzer()
+        accuracy_leds()
+    else: 
+        pass
     pass
 
 
@@ -143,7 +148,7 @@ def accuracy_leds():
     # - For example if the answer is 6 and a user guesses 4, the brightness should be at 4/6*100 = 66%
     # - If they guessed 7, the brightness would be at ((8-7)/(8-6)*100 = 50%
     dutyCycle = 100 - abs(value-current_guess)/7*100
-    ledPwm.ChangeDutyCycle(dutyCycle)
+    ledPWM.ChangeDutyCycle(dutyCycle)
     pass
 
 # Sound Buzzer
@@ -164,7 +169,6 @@ def trigger_buzzer():
         pwm.ChangeFrequency(4)
         pwm.start(50)    
     pass
-
 
 if __name__ == "__main__":
     try:
