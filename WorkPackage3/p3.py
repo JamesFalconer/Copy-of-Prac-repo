@@ -84,11 +84,14 @@ def setup():
 # Load high scores
 def fetch_scores():
     # get however many scores there are
-    score_count = read_block(0)
+    score_count = eeprom.read_block(0)
     # Get the scores
-    
+    scores = []
+    for i in range (1, 4)
+        scores[i - 1] = read_block(i)
     # convert the codes back to ascii
-    
+        for x in 4
+            scores[i - 1][x] = chr(scores[i - 1][x])
     # return back the results
     return score_count, scores
 
