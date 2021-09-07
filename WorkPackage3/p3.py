@@ -113,10 +113,25 @@ def btn_increase_pressed(channel):
     # Increase the value shown on the LEDs
     # You can choose to have a global variable store the user's current guess, 
     # or just pull the value off the LEDs when a user makes a guess
+
     if current_guess != 7 :
         current_guess++
     else:
-        current_guess = 0        
+        current_guess = 0  
+        
+    bin = format(current_guess, '03b')
+    led1 = LOW
+    led2 = LOW
+    led3 = LOW
+    if bin[0] == 1:
+       led1 = HIGH 
+    if bin[1] == 1:
+        led2 = HIGH
+    if bin[2] == 1:
+        led3 = HIGH
+    GPIO.output(LED_value[0], GPIO.led1)
+    GPIO.output(LED_value[1], GPIO.led2)
+    GPIO.output(LED_value[2], GPIO.led3)    
     pass
 
 
@@ -137,7 +152,20 @@ def btn_guess_pressed(channel):
         trigger_buzzer()
         accuracy_leds()
     else: 
-        pass
+        GPIO.output(LED_value[0], GPIO.LOW)
+        GPIO.output(LED_value[1], GPIO.LOW)
+        GPIO.output(LED_value[2], GPIO.LOW)
+        buzzerPWM.ChangeDutyCycle(0)
+        ledPWM.ChangeDutyCycle(0)
+        
+        print("Congratulations! You have guessed correctly")
+        name = input("Please enter a three letter name to immortalise your score: ")
+        if length(name) >3:
+            name = input("That name is too long. Please enter a three letter name: ")
+        
+        scores = fetch_scores()
+        
+        
     pass
 
 
