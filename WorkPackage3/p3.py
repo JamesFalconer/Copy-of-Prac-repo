@@ -7,6 +7,8 @@ import os
 # some global variables that need to change as we run the program
 end_of_game = None  # set if the user wins or ends the game
 
+current_guess = 0
+
 # DEFINE THE PINS USED HERE
 LED_value = [11, 13, 15]
 LED_accuracy = 32
@@ -102,6 +104,10 @@ def btn_increase_pressed(channel):
     # Increase the value shown on the LEDs
     # You can choose to have a global variable store the user's current guess, 
     # or just pull the value off the LEDs when a user makes a guess
+    if current_guess != 7 :
+        current_guess++
+    else:
+        current_guess = 0        
     pass
 
 
