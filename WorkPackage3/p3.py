@@ -211,10 +211,14 @@ def btn_guess_pressed(channel):
         
             print("Congratulations! You have guessed correctly")
             name = input("Please enter a three letter name to immortalise your score: ")
-            if len(name) >3:
-                name = input("That name is too long. Please enter a three letter name: ")
-            elif len(name)<3:
-                name = input("That name is too short. Please enter a three letter name: ")
+            name_length = 0
+            while name_length !=1:
+                if len(name) >3:
+                    name = input("That name is too long. Please enter a three letter name: ")
+                elif len(name)<3:
+                    name = input("That name is too short. Please enter a three letter name: ")
+                else:
+                    name_length = 1
         
             save_scores(name)
             count, scores = fetch_scores()
