@@ -107,10 +107,10 @@ def fetch_scores():
     # Get the scores
     scores = []
     if score_count > 0:
-        for i in score count:
+        for i range(score_count):
             scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
-            for x in 3:
+            for x in range(3):
                 scores[i - 1][x] = chr(scores[i - 1][x])
     # return back the results
     return score_count, scores
