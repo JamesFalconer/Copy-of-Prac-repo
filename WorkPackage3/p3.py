@@ -158,14 +158,18 @@ def btn_increase_pressed(channel):
     led2 = 'LOW'
     led3 = 'LOW'
     if bin[0] == 1:
-       led1 = 'HIGH' 
+       GPIO.output(LED_value[0], GPIO.HIGH) 
+    else:
+       GPIO.output(LED_value[0], GPIO.LOW) 
     if bin[1] == 1:
-        led2 = 'HIGH'
+       GPIO.output(LED_value[1], GPIO.HIGH) 
+    else:
+       GPIO.output(LED_value[1], GPIO.LOW) 
     if bin[2] == 1:
-        led3 = 'HIGH'
-    GPIO.output(LED_value[0], GPIO.led1)
-    GPIO.output(LED_value[1], GPIO.led2)
-    GPIO.output(LED_value[2], GPIO.led3)    
+       GPIO.output(LED_value[2], GPIO.HIGH) 
+    else:
+       GPIO.output(LED_value[2], GPIO.LOW) 
+
     pass
 
 
