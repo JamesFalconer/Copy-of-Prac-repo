@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import random
 import ES2EEPROMUtils
 import os
+import time
 
 # some global variables that need to change as we run the program
 end_of_game = None  # set if the user wins or ends the game
@@ -105,11 +106,12 @@ def fetch_scores():
     score_count = eeprom.read_block(0, 1)
     # Get the scores
     scores = []
-    for i in range (1, 4):
-        scores[i - 1] = eeprom.read_block(i, 4)
+    if score_count > 0:
+        for i in score count:
+            scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
-        for x in 3:
-            scores[i - 1][x] = chr(scores[i - 1][x])
+            for x in 3:
+                scores[i - 1][x] = chr(scores[i - 1][x])
     # return back the results
     return score_count, scores
 
