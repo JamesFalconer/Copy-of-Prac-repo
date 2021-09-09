@@ -218,10 +218,10 @@ def trigger_buzzer():
     pwm = GPIO.PWM(buzzer, 1)
     if abs(value - current_guess) >= 3
         pwm.start(50)
-    elif abs(value - current_guess) == 2
+    elif abs(value - current_guess) == 2:
         pwm.ChangeFrequency(2)
         pwm.start(50)
-    elif abs(value - current_guess) == 1
+    elif abs(value - current_guess) == 1:
         pwm.ChangeFrequency(4)
         pwm.start(50)    
     pass
