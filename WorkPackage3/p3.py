@@ -7,7 +7,6 @@ import os
 # some global variables that need to change as we run the program
 end_of_game = None  # set if the user wins or ends the game
 
-global current_guess
 current_guess = 0
 
 # DEFINE THE PINS USED HERE
