@@ -182,7 +182,7 @@ def btn_guess_pressed(channel):
         if length(name) >3:
             name = input("That name is too long. Please enter a three letter name: ")
         
-        save scores(name)
+        save_scores(name)
         count, scores = fetch_scores()
         
         
