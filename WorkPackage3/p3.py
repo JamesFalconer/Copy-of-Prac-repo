@@ -8,6 +8,7 @@ import os
 end_of_game = None  # set if the user wins or ends the game
 
 current_guess = 0
+first_time = 0
 
 # DEFINE THE PINS USED HERE
 LED_value = [11, 13, 15]
@@ -214,12 +215,19 @@ def btn_guess_pressed(channel):
 
 # LED Brightness
 def accuracy_leds():
+    global first_time
     # Set the brightness of the LED based on how close the guess is to the answer
     # - The % brightness should be directly proportional to the % "closeness"
     # - For example if the answer is 6 and a user guesses 4, the brightness should be at 4/6*100 = 66%
     # - If they guessed 7, the brightness would be at ((8-7)/(8-6)*100 = 50%
+            
     dutyCycle = 100 - abs(value-current_guess)/7*100
-    ledPWM.ChangeDutyCycle(dutyCycle)
+    
+    if first_time == 1:
+        ledPWM.start(dutyCycle)
+        first_time = 0
+    else:
+        ledPWM.ChangeDutyCycle(dutyCycle)
     pass
 
 # Sound Buzzer
