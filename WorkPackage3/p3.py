@@ -143,6 +143,7 @@ def generate_number():
 
 # Increase button pressed
 def btn_increase_pressed(channel):
+    global current_guess
     # Increase the value shown on the LEDs
     # You can choose to have a global variable store the user's current guess, 
     # or just pull the value off the LEDs when a user makes a guess
@@ -170,6 +171,8 @@ def btn_increase_pressed(channel):
 
 # Guess button
 def btn_guess_pressed(channel):
+    global value
+    global current_guess
     # If they've pressed and held the button, clear up the GPIO and take them back to the menu screen
     # Compare the actual value with the user value displayed on the LEDs
     # Change the PWM LED
