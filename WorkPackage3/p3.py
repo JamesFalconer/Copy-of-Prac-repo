@@ -64,7 +64,7 @@ def display_scores(count, raw_data):
     count, scores = fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
-    if int(count)>=3:
+    if count>=3:
         for i in range(3):
             print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ scores[i + 1][3]+ " guesses")
     else:
@@ -103,17 +103,17 @@ def setup():
 # Load high scores
 def fetch_scores():
     # get however many scores there are
-    score_count = eeprom.read_block(0, 1)
+    int(score_count) = eeprom.read_block(0, 1)
     # Get the scores
     scores = []
-    if int(score_count) > 0:
+    if score_count > 0:
         for i in range(int(score_count)):
             scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
             for x in range(3):
                 scores[i][x] = chr(scores[i][x])
     # return back the results
-    return score_count, scores
+    return int(score_count), scores
 
 
 # Save high scores
@@ -128,7 +128,7 @@ def save_scores(name):
         if current_guess < int(scores[i + 1][3]):
             scores.insert(i + 1, n)
     # update total amount of scores
-    int(count) += 1
+    count += 1
     # write new scores
     eeprom.write_block(0, count)
     for i in range(int(count)):
