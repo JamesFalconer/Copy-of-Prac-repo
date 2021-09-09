@@ -58,7 +58,7 @@ def menu():
 
 def display_scores(count, raw_data):
     # print the scores to the screen in the expected format
-    fetch_scores()
+    count, scores = fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
     print("1 - " scores[2][1] scores[2][2] scores[2][3] " took " scores[2][4] " guesses")
