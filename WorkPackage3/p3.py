@@ -127,7 +127,7 @@ def save_scores(name):
     n.append(current_guess)
     # sort
     for i in range(int(count)):
-        if current_guess < int(scores[i + 1][3]):
+        if current_guess < int(scores[i][3]):
             scores.insert(i, n)
             break
     # update total amount of scores
