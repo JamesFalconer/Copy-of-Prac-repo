@@ -130,7 +130,7 @@ def save_scores(name):
     # update total amount of scores
     count += 1
     # write new scores
-    eeprom.write_block(0, count)
+    eeprom.write_byte(0, count)
     for i in range(int(count)):
         for x in range(3):
             scores[i + 1][x] = orc(scores[i + 1][x])
