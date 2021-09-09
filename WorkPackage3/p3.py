@@ -193,7 +193,7 @@ def btn_guess_pressed(channel):
         
         print("Congratulations! You have guessed correctly")
         name = input("Please enter a three letter name to immortalise your score: ")
-        if length(name) >3:
+        if len(name) >3:
             name = input("That name is too long. Please enter a three letter name: ")
         
         save_scores(name)
