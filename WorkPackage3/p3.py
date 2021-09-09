@@ -213,10 +213,12 @@ def btn_guess_pressed(channel):
             name = input("Please enter a three letter name to immortalise your score: ")
             if len(name) >3:
                 name = input("That name is too long. Please enter a three letter name: ")
+            elif len(name)<3:
+                name = input("That name is too short. Please enter a three letter name: ")
         
             save_scores(name)
             count, scores = fetch_scores()
-        
+            menu()
     else:
         GPIO.cleanup()
         menu()
