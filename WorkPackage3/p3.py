@@ -128,7 +128,7 @@ def save_scores(name):
     # sort
     for i in range(int(count)):
         if current_guess < int(scores[i + 1][3]):
-            scores.insert(i + 1, n)
+            scores.insert(i, n)
             break
     # update total amount of scores
     count += 1
@@ -138,8 +138,8 @@ def save_scores(name):
     
     for i in range(int(count)):
         for x in range(3):
-            scores[i + 1][x] = ord(scores[i + 1][x])
-        eeprom.write_block(i + 1, scores)
+            scores[i][x] = ord(scores[i][x])
+        eeprom.write_block(i + 1, scores[i])
         time.sleep(0.01)
         
     pass
