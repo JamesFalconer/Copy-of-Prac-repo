@@ -46,7 +46,8 @@ def menu():
         print("Starting a new round!")
         print("Use the buttons on the Pi to make and submit your guess!")
         print("Press and hold the guess button to cancel your game")
-        global value = generate_number()
+        global value
+        value = generate_number()
         while not end_of_game:
             pass
     elif option == "Q":
@@ -78,8 +79,10 @@ def setup():
     GPIO.setup(btn_submit, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(btn_increase, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     # Setup PWM channels
-    global buzzerPWM = GPIO.PWM(buzzer, 1)
-    global ledPWM = GPIO.PWM(LED_accuracy, 1000)
+    global buzzerPWM
+    global ledPWM
+    buzzerPWM = GPIO.PWM(buzzer, 1)
+    ledPWM = GPIO.PWM(LED_accuracy, 1000)
     # Setup debouncing and callbacks
     pass
 
