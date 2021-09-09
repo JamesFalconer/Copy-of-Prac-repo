@@ -110,7 +110,7 @@ def fetch_scores():
     if score_count > 0:
         for i in range(score_count):
             scores.append(eeprom.read_block(i + 1, 4))
-            sleep(0.01)
+            time.sleep(0.01)
     # convert the codes back to ascii
             for x in range(3):
                 scores[i][x] = chr(scores[i][x])
