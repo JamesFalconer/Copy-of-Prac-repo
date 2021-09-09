@@ -107,7 +107,7 @@ def fetch_scores():
     # Get the scores
     scores = []
     if score_count > 0:
-        for i range(score_count):
+        for i in range(score_count):
             scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
             for x in range(3):
