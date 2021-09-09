@@ -187,24 +187,31 @@ def btn_guess_pressed(channel):
     # - add the new score
     # - sort the scores
     # - Store the scores back to the EEPROM, being sure to update the score count
-    if current_guess - value != 0:
-        trigger_buzzer()
-        accuracy_leds()
-    else: 
-        GPIO.output(LED_value[0], GPIO.LOW)
-        GPIO.output(LED_value[1], GPIO.LOW)
-        GPIO.output(LED_value[2], GPIO.LOW)
-        buzzerPWM.ChangeDutyCycle(0)
-        ledPWM.ChangeDutyCycle(0)
+    start_time = time.time()
+    button_time = start_time - time.time()
+    
+    if button_time < 0.65:
+        if current_guess - value != 0:
+            trigger_buzzer()
+            accuracy_leds()
+        else: 
+            GPIO.output(LED_value[0], GPIO.LOW)
+            GPIO.output(LED_value[1], GPIO.LOW)
+            GPIO.output(LED_value[2], GPIO.LOW)
+            buzzerPWM.ChangeDutyCycle(0)
+            ledPWM.ChangeDutyCycle(0)
         
-        print("Congratulations! You have guessed correctly")
-        name = input("Please enter a three letter name to immortalise your score: ")
-        if len(name) >3:
-            name = input("That name is too long. Please enter a three letter name: ")
+            print("Congratulations! You have guessed correctly")
+            name = input("Please enter a three letter name to immortalise your score: ")
+            if len(name) >3:
+                name = input("That name is too long. Please enter a three letter name: ")
         
-        save_scores(name)
-        count, scores = fetch_scores()
+            save_scores(name)
+            count, scores = fetch_scores()
         
+        else:
+            GPIO.cleanup()
+            menu()
         
     pass
 
