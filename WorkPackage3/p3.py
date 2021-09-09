@@ -137,7 +137,7 @@ def save_scores(name):
     
     for i in range(int(count)):
         for x in range(3):
-            scores[i + 1][x] = orc(scores[i + 1][x])
+            scores[i + 1][x] = ord(scores[i + 1][x])
         eeprom.write_block(i + 1, scores)
         time.sleep(0.01)
         
