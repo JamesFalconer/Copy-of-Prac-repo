@@ -221,15 +221,14 @@ def trigger_buzzer():
     # If the user is off by an absolute value of 3, the buzzer should sound once every second
     # If the user is off by an absolute value of 2, the buzzer should sound twice every second
     # If the user is off by an absolute value of 1, the buzzer should sound 4 times a second
-    pwm = GPIO.PWM(buzzer, 1)
     if abs(value - current_guess) >= 3:
-        pwm.start(50)
+        buzzer_PWM.start(50)
     elif abs(value - current_guess) == 2:
-        pwm.ChangeFrequency(2)
-        pwm.start(50)
+        buzzer_PWM.ChangeFrequency(2)
+        buzzer_PWM.start(50)
     elif abs(value - current_guess) == 1:
-        pwm.ChangeFrequency(4)
-        pwm.start(50)    
+        buzzer_PWM.ChangeFrequency(4)
+        buzzer_PWM.start(50)    
     pass
 
 if __name__ == "__main__":
