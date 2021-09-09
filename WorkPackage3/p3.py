@@ -154,15 +154,15 @@ def btn_increase_pressed(channel):
         current_guess = 0  
         
     bin = format(current_guess, '03b')
-    led1 = LOW
-    led2 = LOW
-    led3 = LOW
+    led1 = 'LOW'
+    led2 = 'LOW'
+    led3 = 'LOW'
     if bin[0] == 1:
-       led1 = HIGH 
+       led1 = 'HIGH' 
     if bin[1] == 1:
-        led2 = HIGH
+        led2 = 'HIGH'
     if bin[2] == 1:
-        led3 = HIGH
+        led3 = 'HIGH'
     GPIO.output(LED_value[0], GPIO.led1)
     GPIO.output(LED_value[1], GPIO.led2)
     GPIO.output(LED_value[2], GPIO.led3)    
