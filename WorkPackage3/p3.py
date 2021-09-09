@@ -88,24 +88,29 @@ def setup():
 # Load high scores
 def fetch_scores():
     # get however many scores there are
-    score_count = eeprom.read_block(0)
+    score_count = eeprom.read_block(0, 1)
     # Get the scores
     scores = []
-    for i in range (1, 4)
-        scores[i - 1] = read_block(i)
+    for i in range (1, 4):
+        scores[i - 1] = eeprom.read_block(i, 4)
     # convert the codes back to ascii
-        for x in 4
+        for x in 3:
             scores[i - 1][x] = chr(scores[i - 1][x])
     # return back the results
     return score_count, scores
 
 
 # Save high scores
-def save_scores():
+def save_scores(name):
     # fetch scores
-    fetch_scores()
+    count, scores = fetch_scores()
     # include new score
+    n = list(name)
+    n.append(current_guess)
     # sort
+    for i in count:
+        if current_guess < scores[i + 1][3]
+            scores.insert(i + 1, n)
     # update total amount of scores
     # write new scores
     pass
@@ -171,7 +176,8 @@ def btn_guess_pressed(channel):
         if length(name) >3:
             name = input("That name is too long. Please enter a three letter name: ")
         
-        scores = fetch_scores()
+        save scores(name)
+        count, scores = fetch_scores()
         
         
     pass
