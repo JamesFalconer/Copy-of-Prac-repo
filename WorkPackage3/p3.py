@@ -66,10 +66,10 @@ def display_scores(count, raw_data):
     # print out the scores in the required format
     if count>=3:
         for i in range(3):
-            print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ scores[i + 1][3]+ " guesses")
+            print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ str(scores[i + 1][3])+ " guesses")
     else:
         for i in range(int(count)):
-            print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ scores[i + 1][3]+ " guesses")
+            print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ str(scores[i + 1][3])+ " guesses")
     
     pass
 
