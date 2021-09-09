@@ -61,14 +61,14 @@ def menu():
 
 def display_scores(count, raw_data):
     # print the scores to the screen in the expected format
-    int(count), scores = fetch_scores()
+    count, scores = fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
-    if count>=3:
+    if int(count)>=3:
         for i in range(3):
             print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ scores[i + 1][3]+ " guesses")
     else:
-        for i in range(count):
+        for i in range(int(count)):
             print(str(i+1)+ " - "+ scores[i + 1][0]+ scores[i + 1][1]+ scores[i + 1][2]+ " took "+ scores[i + 1][3]+ " guesses")
     
     pass
@@ -119,19 +119,19 @@ def fetch_scores():
 # Save high scores
 def save_scores(name):
     # fetch scores
-    int(count), scores = fetch_scores()
+    count, scores = fetch_scores()
     # include new score
     n = list(name)
     n.append(current_guess)
     # sort
-    for i in range(count):
+    for i in range(int(count)):
         if current_guess < int(scores[i + 1][3]):
             scores.insert(i + 1, n)
     # update total amount of scores
-    count += 1
+    int(count) += 1
     # write new scores
     eeprom.write_block(0, count)
-    for i in range(count):
+    for i in range(int(count)):
         for x in range(3):
             scores[i + 1][x] = orc(scores[i + 1][x])
         eeprom.write_block(i + 1, scores)
@@ -209,7 +209,7 @@ def btn_guess_pressed(channel):
                 name = input("That name is too long. Please enter a three letter name: ")
         
             save_scores(name)
-            int(count), scores = fetch_scores()
+            count, scores = fetch_scores()
         
     else:
         GPIO.cleanup()
