@@ -142,7 +142,7 @@ def btn_increase_pressed(channel):
     # or just pull the value off the LEDs when a user makes a guess
 
     if current_guess != 7 :
-        current_guess++
+        current_guess+=1
     else:
         current_guess = 0  
         
