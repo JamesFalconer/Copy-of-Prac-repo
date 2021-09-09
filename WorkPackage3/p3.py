@@ -110,6 +110,7 @@ def fetch_scores():
     if score_count > 0:
         for i in range(score_count):
             scores.append(eeprom.read_block(i + 1, 4))
+            sleep(0.01)
     # convert the codes back to ascii
             for x in range(3):
                 scores[i][x] = chr(scores[i][x])
@@ -132,10 +133,13 @@ def save_scores(name):
     count += 1
     # write new scores
     eeprom.write_byte(0, count)
+    sleep(0.01)
+    
     for i in range(int(count)):
         for x in range(3):
             scores[i + 1][x] = orc(scores[i + 1][x])
         eeprom.write_block(i + 1, scores)
+        sleep(0.01)
         
     pass
 
