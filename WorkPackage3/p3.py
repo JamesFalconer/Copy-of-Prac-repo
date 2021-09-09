@@ -196,9 +196,9 @@ def btn_guess_pressed(channel):
     # - sort the scores
     # - Store the scores back to the EEPROM, being sure to update the score count
     start_time = time.time()
-    button_time = start_time - time.time()
     while GPIO.input(channel) == 0:
         pass
+    button_time = start_time - time.time()
     
     if button_time < 0.65:
         if current_guess - value != 0:
