@@ -9,7 +9,7 @@ import time
 end_of_game = None  # set if the user wins or ends the game
 
 current_guess = 0
-first_time = 0
+first_time = 1
 
 # DEFINE THE PINS USED HERE
 LED_value = [11, 13, 15]
@@ -92,7 +92,7 @@ def setup():
     global buzzerPWM
     global ledPWM
     buzzerPWM = GPIO.PWM(buzzer, 1)
-    ledPWM = GPIO.PWM(LED_accuracy, 1000)
+    ledPWM = GPIO.PWM(LED_accuracy, 50)
     # Setup debouncing and callbacks
     GPIO.add_event_detect(btn_submit, GPIO.FALLING, callback=btn_increase_pressed, bouncetime=200)
     GPIO.add_event_detect(btn_increase, GPIO.FALLING, callback=btn_guess_pressed, bouncetime=200)
@@ -227,11 +227,12 @@ def accuracy_leds():
     # - If they guessed 7, the brightness would be at ((8-7)/(8-6)*100 = 50%
             
     dutyCycle = 100 - abs(value-current_guess)/7*100
-    print(dutyCycle)
-    
+
     if first_time == 1:
+        ledPWM.ChangeFrequency(50)
         ledPWM.start(dutyCycle)
         first_time = 0
+
     else:
         ledPWM.ChangeDutyCycle(dutyCycle)
     pass
