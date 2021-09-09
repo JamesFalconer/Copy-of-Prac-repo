@@ -156,10 +156,6 @@ def btn_increase_pressed(channel):
         
     bin = format(current_guess, '03b')
 
-    
-    print(bin)
-    print(bin[0])
-    print(bin[1])
     if int(bin[0]) == 1:
        GPIO.output(LED_value[0], GPIO.HIGH) 
     else:
@@ -215,13 +211,14 @@ def btn_guess_pressed(channel):
 
 # LED Brightness
 def accuracy_leds():
-    global first_time
+    global first_time, value, current_guess
     # Set the brightness of the LED based on how close the guess is to the answer
     # - The % brightness should be directly proportional to the % "closeness"
     # - For example if the answer is 6 and a user guesses 4, the brightness should be at 4/6*100 = 66%
     # - If they guessed 7, the brightness would be at ((8-7)/(8-6)*100 = 50%
             
     dutyCycle = 100 - abs(value-current_guess)/7*100
+    print(dutyCycle)
     
     if first_time == 1:
         ledPWM.start(dutyCycle)
