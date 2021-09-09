@@ -61,9 +61,8 @@ def display_scores(count, raw_data):
     count, scores = fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
-    print("1 - " scores[2][1] scores[2][2] scores[2][3] " took " scores[2][4] " guesses")
-    print("2 - " scores[3][1] scores[3][2] scores[3][3] " took " scores[3][4] " guesses")
-    print("3 - " scores[4][1] scores[4][2] scores[4][3] " took " scores[4][4] " guesses")
+    for i in 3:
+        print(i, " - ", scores[i + 1][1] scores[i + 1][2] scores[i + 1][3], " took ", scores[i + 1][4], " guesses")
     pass
 
 
@@ -112,7 +111,14 @@ def save_scores(name):
         if current_guess < scores[i + 1][3]
             scores.insert(i + 1, n)
     # update total amount of scores
+    count += 1
     # write new scores
+    eeprom.write_block(0, count)
+    for i in count:
+        for x in 3:
+            scores[i + 1][x] = orc(scores[i + 1][x])
+        eeprom.write_block(i + 1, scores)
+        
     pass
 
 
