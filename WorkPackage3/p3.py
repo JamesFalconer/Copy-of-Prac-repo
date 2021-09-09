@@ -103,11 +103,11 @@ def setup():
 # Load high scores
 def fetch_scores():
     # get however many scores there are
-    int(score_count) = eeprom.read_block(0, 1)
+    score_count = eeprom.read_block(0, 1)
     # Get the scores
     scores = []
-    if score_count > 0:
-        for i in range(score_count):
+    if int(score_count) > 0:
+        for i in range(int(score_count)):
             scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
             for x in range(3):
