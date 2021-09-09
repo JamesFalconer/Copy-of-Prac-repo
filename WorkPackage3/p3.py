@@ -97,7 +97,6 @@ def setup():
     GPIO.add_event_detect(btn_submit, GPIO.FALLING, callback=btn_increase_pressed, bouncetime=200)
     GPIO.add_event_detect(btn_increase, GPIO.FALLING, callback=btn_guess_pressed, bouncetime=200)
 
-    eeprom.populate_mock_scores()
     pass
     
     
