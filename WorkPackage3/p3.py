@@ -58,8 +58,12 @@ def menu():
 
 def display_scores(count, raw_data):
     # print the scores to the screen in the expected format
+    fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
+    print("1 - " scores[2][1] scores[2][2] scores[2][3] " took " scores[2][4] " guesses")
+    print("2 - " scores[3][1] scores[3][2] scores[3][3] " took " scores[3][4] " guesses")
+    print("3 - " scores[4][1] scores[4][2] scores[4][3] " took " scores[4][4] " guesses")
     pass
 
 
@@ -99,6 +103,7 @@ def fetch_scores():
 # Save high scores
 def save_scores():
     # fetch scores
+    fetch_scores()
     # include new score
     # sort
     # update total amount of scores
