@@ -198,7 +198,7 @@ def btn_guess_pressed(channel):
     start_time = time.time()
     while GPIO.input(channel) == 0:
         pass
-    button_time = start_time - time.time()
+    button_time = time.time() - start_time
     
     if button_time < 0.65:
         if current_guess - value != 0:
