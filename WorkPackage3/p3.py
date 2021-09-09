@@ -133,13 +133,13 @@ def save_scores(name):
     count += 1
     # write new scores
     eeprom.write_byte(0, count)
-    sleep(0.01)
+    time.sleep(0.01)
     
     for i in range(int(count)):
         for x in range(3):
             scores[i + 1][x] = orc(scores[i + 1][x])
         eeprom.write_block(i + 1, scores)
-        sleep(0.01)
+        time.sleep(0.01)
         
     pass
 
