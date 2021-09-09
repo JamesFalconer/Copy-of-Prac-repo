@@ -209,9 +209,9 @@ def btn_guess_pressed(channel):
             save_scores(name)
             count, scores = fetch_scores()
         
-        else:
-            GPIO.cleanup()
-            menu()
+    else:
+        GPIO.cleanup()
+        menu()
         
     pass
 
