@@ -103,7 +103,7 @@ def setup():
 # Load high scores
 def fetch_scores():
     # get however many scores there are
-    score_count = eeprom.read_block(0, 1)
+    score_count = eeprom.read_byte(0)
     # Get the scores
     scores = []
     if score_count > 0:
