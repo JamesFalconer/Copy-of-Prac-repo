@@ -111,7 +111,7 @@ def fetch_scores():
             scores[i] = eeprom.read_block(i + 1, 4)
     # convert the codes back to ascii
             for x in range(3):
-                scores[i - 1][x] = chr(scores[i - 1][x])
+                scores[i][x] = chr(scores[i][x])
     # return back the results
     return score_count, scores
 
@@ -124,15 +124,15 @@ def save_scores(name):
     n = list(name)
     n.append(current_guess)
     # sort
-    for i in count:
+    for i in range(count):
         if current_guess < int(scores[i + 1][3]):
             scores.insert(i + 1, n)
     # update total amount of scores
     count += 1
     # write new scores
     eeprom.write_block(0, count)
-    for i in count:
-        for x in 3:
+    for i in range(count):
+        for x in range(3):
             scores[i + 1][x] = orc(scores[i + 1][x])
         eeprom.write_block(i + 1, scores)
         
