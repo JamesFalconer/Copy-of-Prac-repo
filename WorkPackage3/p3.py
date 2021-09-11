@@ -60,9 +60,8 @@ def menu():
         print("Invalid option. Please select a valid one!")
 
 
-def display_scores(count, raw_data):
+def display_scores(count, scores):
     # print the scores to the screen in the expected format
-    count, scores = fetch_scores()
     print("There are {} scores. Here are the top 3!".format(count))
     # print out the scores in the required format
     if count>=3:
