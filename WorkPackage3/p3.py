@@ -10,6 +10,7 @@ end_of_game = None  # set if the user wins or ends the game
 
 current_guess = 0
 first_time = 1
+num_guess = 0
 
 # DEFINE THE PINS USED HERE
 LED_value = [11, 13, 15]
@@ -93,6 +94,12 @@ def setup():
     global ledPWM
     buzzerPWM = GPIO.PWM(buzzer, 1)
     ledPWM = GPIO.PWM(LED_accuracy, 50)
+    
+    GPIO.output(LED_value[0], GPIO.LOW)
+    GPIO.output(LED_value[1], GPIO.LOW)
+    GPIO.output(LED_value[2], GPIO.LOW)
+    buzzerPWM.ChangeDutyCycle(0)
+    ledPWM.ChangeDutyCycle(0)
     # Setup debouncing and callbacks
     GPIO.add_event_detect(btn_submit, GPIO.FALLING, callback=btn_increase_pressed, bouncetime=200)
     GPIO.add_event_detect(btn_increase, GPIO.FALLING, callback=btn_guess_pressed, bouncetime=200)
@@ -123,10 +130,10 @@ def save_scores(name):
     count, scores = fetch_scores()
     # include new score
     n = list(name)
-    n.append(current_guess)
+    n.append(num_guess)
     # sort
     for i in range(int(count)):
-        if current_guess < int(scores[i][3]):
+        if num_guess < int(scores[i][3]):
             scores.insert(i, n)
             break
     # update total amount of scores
@@ -181,8 +188,7 @@ def btn_increase_pressed(channel):
 
 # Guess button
 def btn_guess_pressed(channel):
-    global value
-    global current_guess
+    global value, current_guess, num_guess
     # If they've pressed and held the button, clear up the GPIO and take them back to the menu screen
     # Compare the actual value with the user value displayed on the LEDs
     # Change the PWM LED
@@ -200,6 +206,7 @@ def btn_guess_pressed(channel):
     button_time = time.time() - start_time
     
     if button_time < 0.65:
+        num_guess+=1
         if current_guess - value != 0:
             trigger_buzzer()
             accuracy_leds()
@@ -223,9 +230,15 @@ def btn_guess_pressed(channel):
         
             save_scores(name)
             count, scores = fetch_scores()
+            end_of_game = True
             menu()
     else:
-        GPIO.cleanup()
+        GPIO.output(LED_value[0], GPIO.LOW)
+        GPIO.output(LED_value[1], GPIO.LOW)
+        GPIO.output(LED_value[2], GPIO.LOW)
+        buzzerPWM.ChangeDutyCycle(0)
+        ledPWM.ChangeDutyCycle(0)
+        end_of_game = True
         menu()
         
     pass
