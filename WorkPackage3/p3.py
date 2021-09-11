@@ -201,7 +201,8 @@ def btn_guess_pressed(channel):
             GPIO.output(LED_value[2], GPIO.LOW)
             buzzerPWM.ChangeDutyCycle(0)
             ledPWM.ChangeDutyCycle(0)
-        
+            current_guess = 0
+
             print("Congratulations! You have guessed correctly")
             name = input("Please enter a three letter name to immortalise your score: ")
             name_length = 0
@@ -215,7 +216,6 @@ def btn_guess_pressed(channel):
         
             save_scores(name)
             count, scores = fetch_scores()
-            end_of_game = True
             menu()
     else:
         GPIO.output(LED_value[0], GPIO.LOW)
@@ -223,7 +223,7 @@ def btn_guess_pressed(channel):
         GPIO.output(LED_value[2], GPIO.LOW)
         buzzerPWM.ChangeDutyCycle(0)
         ledPWM.ChangeDutyCycle(0)
-        end_of_game = True
+        current_guess = 0
         menu()
         
     pass
