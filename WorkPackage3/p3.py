@@ -44,6 +44,7 @@ def menu():
         print("HIGH SCORES!!")
         s_count, ss = fetch_scores()
         display_scores(s_count, ss)
+        menu()
     elif option == "P":
         os.system('clear')
         print("Starting a new round!")
